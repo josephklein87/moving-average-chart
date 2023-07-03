@@ -476,10 +476,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
   const chartHeight = canvasHeight - (chartMargin * 2);
   const yIncrement = chartHeight / 20;
   const xIncrement = chartWidth / 30;
-
-  context.strokeStyle = 'black';
-  context.strokeRect(chartMargin, chartMargin, 
-                    chartWidth, chartHeight);
   
   //distance from the top of canvas to x axis
   const yAdjust = canvasHeight - chartMargin;
@@ -505,6 +501,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
 
   context.strokeStyle = 'black';
+  context.strokeRect(chartMargin, chartMargin, 
+                    chartWidth, chartHeight);
+
   //used closure here to create the numbers on the y-axis
   const counterY = (() => {
     count = 120;
