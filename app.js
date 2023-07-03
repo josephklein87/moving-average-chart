@@ -485,8 +485,26 @@ document.addEventListener('DOMContentLoaded', function(event) {
   const yAdjust = canvasHeight - chartMargin;
   //distance from left of canvas to y axis
   const xAdjust = chartMargin;
+  
+  // creating grid lines
 
+  //vertical
+  for (let i = chartMargin + xIncrement; i < canvasWidth - xAdjust; i += xIncrement) {
+    context.strokeStyle = 'lightgray';
+    context.moveTo(i, yAdjust);
+    context.lineTo(i, xAdjust);
+    context.stroke();
+  }
 
+  //horizontal
+  for (let i = chartMargin + yIncrement; i < yAdjust; i += yIncrement) {
+    context.beginPath();
+    context.moveTo(xAdjust, canvasHeight - i);
+    context.lineTo(canvasWidth - xAdjust, canvasHeight - i);
+    context.stroke();
+  }
+
+  context.strokeStyle = 'black';
   //used closure here to create the numbers on the y-axis
   const counterY = (() => {
     count = 120;
@@ -505,7 +523,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
 
   //for loop to build ticks along the x axis for dates
-  for (let i = chartMargin + xIncrement; i < canvasWidth - xAdjust - 1; i += xIncrement) {
+  for (let i = chartMargin + xIncrement; i < canvasWidth - xAdjust; i += xIncrement) {
+      context.strokeStyle = 'black'
       context.beginPath();
       context.moveTo(i, yAdjust);
       context.lineTo(i, yAdjust + 10);
@@ -544,25 +563,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
       context.fillText((month + "/" + day), start + next, yAdjust + 20);
       
   }
-
-  // creating grid lines
-
-  //vertical
-  for (let i = chartMargin + xIncrement; i < canvasWidth - xAdjust; i += xIncrement) {
-      context.strokeStyle = 'lightgray';
-      context.moveTo(i, yAdjust);
-      context.lineTo(i, xAdjust);
-      context.stroke();
-  }
-
-  //horizontal
-  for (let i = chartMargin + yIncrement; i < yAdjust; i += yIncrement) {
-    context.beginPath();
-    context.moveTo(xAdjust, canvasHeight - i);
-    context.lineTo(canvasWidth - xAdjust, canvasHeight - i);
-    context.stroke();
-  }
-
 
   /* creating the line graph */
   context.strokeStyle = 'blue';
