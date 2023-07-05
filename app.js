@@ -456,7 +456,7 @@ for (let i = 19; i < data.length; i++) {
     averageTwenty.push({date: date, avg: sum/20});
 }
 
-document.addEventListener('DOMContentLoaded', function(event) {
+document.addEventListener('DOMContentLoaded', () => {
   let canvas = document.getElementById("twenty-day");
   let context = canvas.getContext("2d");
   
