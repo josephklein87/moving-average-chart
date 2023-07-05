@@ -492,18 +492,23 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
 
   context.strokeStyle = 'black';
-  context.strokeRect(chartMargin, chartMargin, 
-                    chartWidth, chartHeight);
+  context.strokeRect(chartMargin, 
+                    chartMargin, 
+                    chartWidth, 
+                    chartHeight);
 
   //used closure here to create the numbers on the y-axis
   const counterY = (() => {
     count = 120;
-    return (() => {count++; return count;})
+    return (
+      () => {
+        count++; 
+        return count;
+      })
   })();
 
   //for loop to build ticks along the y axis at set intervals
   for (let i = chartMargin + yIncrement; i < yAdjust; i += yIncrement) {
-      
       context.beginPath();
       context.moveTo(xAdjust, canvasHeight - i);
       context.lineTo(xAdjust - 10, canvasHeight - i);
@@ -525,7 +530,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
   //for loop to fill in dates
   for (let i = 1; i < averageTwenty.length; i++) {
       //function to convert dates into more use-able length
-    
           let split = averageTwenty[i].date.split("-");
           let month;
           let day;
@@ -545,13 +549,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
             month = " " + month
           }
       
-
       let start = chartMargin - xIncrement/(chartWidth/240);
       let next = i * xIncrement
 
       context.font = "8px Arial";
-      context.fillText((month + "/" + day), start + next, yAdjust + 20);
-      
+      context.fillText((month + "/" + day), start + next, yAdjust + 20); 
   }
 
   /* creating the line graph */
@@ -563,6 +565,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   for (let i = 1; i < averageTwenty.length; i++) {
       const start = xAdjust;
       let next = xIncrement * i;
+
       context.lineTo (start + next, yAdjust - ((averageTwenty[i].avg - 120) * yIncrement));
       context.stroke()
   }
@@ -572,6 +575,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     context.beginPath()
     const start = xAdjust;
     let next = xIncrement * i;
+    
     context.arc(start + next, yAdjust - ((averageTwenty[i].avg - 120) * yIncrement), 2, 0, 2* Math.PI);
     context.fill()
     context.stroke()
@@ -582,6 +586,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     let target = document.createElement('div')
     let content = document.createTextNode(averageTwenty[i].avg.toString().slice(0,10));
     let main = document.getElementById('canvas-container');
+    
     popup.setAttribute('class', 'popup');
     target.setAttribute('class', 'target')
     popup.setAttribute("id", "popup" + i)
@@ -593,14 +598,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   //adjusting hover elements
   const hovers = document.querySelectorAll('.popup');
+  
   hovers.forEach((hover, index)=>{
     const start = xAdjust;
     let next = xIncrement * index;
       hover.style.fontSize = "12px";
       hover.style.transform = `translate(${start + next}px, ${yAdjust - ((averageTwenty[index+1].avg - 120) * yIncrement)}px)`
   })
+
   // adjusting target elements
   const targets = document.querySelectorAll('.target');
+  
   targets.forEach((target, index)=>{
     const start = xAdjust;
     let next = xIncrement * index;
@@ -613,10 +621,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   for (let i = 1; i < averageTwenty.length; i++) {
     let css = `#target${i}:hover + #popup${i} { opacity: 100; }`
-    
+
     style.appendChild(document.createTextNode(css));
-    
-    
   }
 
   
