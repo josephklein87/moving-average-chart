@@ -462,11 +462,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
   
   const canvasHeight = canvas.clientHeight;
   const canvasWidth = canvas.clientWidth;
+  console.log(canvasHeight + " " + canvasWidth)
   const chartMargin = 40;
   const chartWidth = canvasWidth - (chartMargin * 2);
   const chartHeight = canvasHeight - (chartMargin * 2);
   const yIncrement = chartHeight / 20;
   const xIncrement = chartWidth / 30;
+  const yStart = 120
   
   //distance from the top of canvas to x axis
   const yAdjust = canvasHeight - chartMargin;
@@ -499,7 +501,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   //used closure here to create the numbers on the y-axis
   const counterY = (() => {
-    count = 120;
+    let count = yStart;
     return (
       () => {
         count++; 
@@ -561,12 +563,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
   context.beginPath();
   /* since the y scale starts at 120
   we need to calculate the new position of each point */
-  context.moveTo(xAdjust, yAdjust - ((averageTwenty[0].avg - 120) * yIncrement));
+  context.moveTo(xAdjust, yAdjust - ((averageTwenty[0].avg - yStart) * yIncrement));
   for (let i = 1; i < averageTwenty.length; i++) {
       const start = xAdjust;
       let next = xIncrement * i;
 
-      context.lineTo (start + next, yAdjust - ((averageTwenty[i].avg - 120) * yIncrement));
+      context.lineTo (start + next, yAdjust - ((averageTwenty[i].avg - yStart) * yIncrement));
       context.stroke()
   }
 
@@ -576,7 +578,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     const start = xAdjust;
     let next = xIncrement * i;
     
-    context.arc(start + next, yAdjust - ((averageTwenty[i].avg - 120) * yIncrement), 2, 0, 2* Math.PI);
+    context.arc(start + next, yAdjust - ((averageTwenty[i].avg - yStart) * yIncrement), 2, 0, 2* Math.PI);
     context.fill()
     context.stroke()
 }
@@ -600,19 +602,19 @@ document.addEventListener('DOMContentLoaded', function(event) {
   const hovers = document.querySelectorAll('.popup');
   
   hovers.forEach((hover, index)=>{
-    const start = xAdjust;
+    const start = xAdjust + xIncrement;
     let next = xIncrement * index;
       hover.style.fontSize = "12px";
-      hover.style.transform = `translate(${start + next}px, ${yAdjust - ((averageTwenty[index+1].avg - 120) * yIncrement)}px)`
+      hover.style.transform = `translate(${start + next}px, ${yAdjust - ((averageTwenty[index+1].avg - yStart) * yIncrement)}px)`
   })
 
   // adjusting target elements
   const targets = document.querySelectorAll('.target');
   
   targets.forEach((target, index)=>{
-    const start = xAdjust;
+    const start = xAdjust + xIncrement;
     let next = xIncrement * index;
-      target.style.transform = `translate(${start + next}px, ${yAdjust - ((averageTwenty[index+1].avg - 120) * yIncrement)}px)`
+      target.style.transform = `translate(${start + next}px, ${yAdjust - ((averageTwenty[index+1].avg - yStart) * yIncrement)}px)`
   })
 
   // adding rules for hover

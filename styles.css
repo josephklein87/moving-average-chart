@@ -21,28 +21,28 @@ canvas {
 }
 
 .popup {
-    opacity: 0%;
+    opacity: 20%;
     position: absolute;
     z-index: 1;
     background-color: rgb(176, 203, 252);
     padding: 3px;
     border-radius: 5px;
-    top: -30px;
-    left: -12px;
+    top: -40px;
+    left: -41px;
     transition: opacity .5s;
     user-select: none;
     z-index: 1;
 }
 
 .target {
-    opacity: 0%;
+    opacity: 20%;
     position: absolute;
     border-radius: 5px;
     width: 15px;
     height: 15px;
     background-color: blue;
-    top: -8px;
-    left: 12px;
+    top: -7.5px;
+    left: -7.5px;
     z-index: 2;
 }
 
