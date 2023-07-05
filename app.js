@@ -444,17 +444,8 @@ const data = [
 
 let averageTwenty = [];
 
-/* This for loop cycles through the numbers starting at index of 19 
-(which since the starting index is 0 is the 20th number).
-The nested for loop within tracks backwards to add the previous 19 numbers
-to the 20th number. Then, we get the average by dividing by 20, 
-and push an object containing the date we started with and the average number 
-into a new array.  This repeats for the rest of the numbers. 
-We are working within a 30 day span, with the data set including 
-the previous 20 days. 
-
-In the end we get an array containing the average for each date for
-the 30 day span. */
+/* Nested for loop. Pushes an object containing the average of the previous twenty days and the date
+each average was calculated for into an array */
 
 for (let i = 19; i < data.length; i++) {
     let sum = data[i].Close;
