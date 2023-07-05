@@ -28,7 +28,7 @@ canvas {
     padding: 3px;
     border-radius: 5px;
     top: -40px;
-    left: -41px;
+    left: -30px;
     transition: opacity .5s;
     user-select: none;
     z-index: 1;
