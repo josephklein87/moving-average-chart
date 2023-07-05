@@ -462,7 +462,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
   
   const canvasHeight = canvas.clientHeight;
   const canvasWidth = canvas.clientWidth;
-  console.log(canvasHeight + " " + canvasWidth)
   const chartMargin = 40;
   const chartWidth = canvasWidth - (chartMargin * 2);
   const chartHeight = canvasHeight - (chartMargin * 2);
