@@ -608,14 +608,15 @@ document.addEventListener('DOMContentLoaded', function(event) {
   })
 
   // adding rules for hover
-  const style = document.createElement('style')
+  const style = document.createElement('style');
+  document.getElementsByTagName('head')[0].appendChild(style);
 
   for (let i = 1; i < averageTwenty.length; i++) {
     let css = `#target${i}:hover + #popup${i} { opacity: 100; }`
     
-    style.appendChild(document.createTextNode(css))
+    style.appendChild(document.createTextNode(css));
     
-    document.getElementsByTagName('head')[0].appendChild(style);
+    
   }
 
   
