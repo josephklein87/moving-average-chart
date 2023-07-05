@@ -519,7 +519,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
 
   //for loop to build ticks along the x axis for dates
-  for (let i = chartMargin + xIncrement; i < canvasWidth - xAdjust; i += xIncrement) {
+  for (let i = chartMargin + xIncrement; i < canvasWidth - xAdjust - 1; i += xIncrement) {
       context.strokeStyle = 'black'
       context.beginPath();
       context.moveTo(i, yAdjust);
